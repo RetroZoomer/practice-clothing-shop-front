@@ -1,7 +1,8 @@
 <div class="max-w-2xl container mx-auto pt-5">
 
   <app-product
-    [product]="products[0]"
+    *ngFor="let product of products; let i = index"
+    [product]="product"
   ></app-product>
 
 </div>
