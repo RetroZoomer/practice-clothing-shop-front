@@ -5,19 +5,28 @@ import {ProductComponent} from "./components/product/product.component";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {GlobalErrorComponent} from "./components/global-error/global-error.component";
+import {AppRoutingModule} from  "./app.routes";
+import {NavigationComponent} from "./components/navigation/navigation.component";
+import {ProductPageComponent} from "./pages/product-page/product-page.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    GlobalErrorComponent
+    GlobalErrorComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+    NavigationComponent
   ],
   providers: [],
+  exports: [
+    ProductComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
