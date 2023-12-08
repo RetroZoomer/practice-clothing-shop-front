@@ -8,6 +8,7 @@ import {GlobalErrorComponent} from "./components/global-error/global-error.compo
 import {AppRoutingModule} from  "./app.routes";
 import {NavigationComponent} from "./components/navigation/navigation.component";
 import {ProductPageComponent} from "./pages/product-page/product-page.component";
+import {ProductsService} from "./services/products.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import {ProductPageComponent} from "./pages/product-page/product-page.component"
     AppRoutingModule,
     NavigationComponent
   ],
-  providers: [],
+  providers: [ProductsService],
   exports: [
     ProductComponent
   ],

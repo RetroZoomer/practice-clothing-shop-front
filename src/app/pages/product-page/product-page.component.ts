@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {IProduct} from "../../models/product";
 import {ProductsService} from "../../services/products.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ErrorService} from "../../services/error.service";
+import {throwError} from "rxjs";
 
 @Component({
   selector: 'app-product-page',
@@ -10,12 +13,30 @@ import {ProductsService} from "../../services/products.service";
 export class ProductPageComponent implements OnInit{
   products: IProduct[] = []
 
-  constructor(private productsService: ProductsService) {
+  constructor(
+    private productsService: ProductsService,
+    private errorService: ErrorService
+  ) {
   }
 
-  ngOnInit(): void {
-    this.productsService.getAll().subscribe(products => {
-      this.products = products
-    })
+  private errorHandler(error: HttpErrorResponse) {
+    this.errorService.handle(error.message)
+    return throwError(() => error.message)
   }
+
+  ngOnInit() {
+    this.getProducts();
+  }
+
+  public getProducts(): void {
+    this.productsService.getProducts().subscribe(products => {
+      this.products = products;
+    },
+      (error: HttpErrorResponse) => {
+        this.errorHandler.bind(this)
+      })
+  }
+
+
+
 }

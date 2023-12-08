@@ -1,12 +1,10 @@
 export interface IProduct {
   id: number
-  title: string
-  price: number
-  description: string
-  category: string
+  name: string
   image: string
-  rating: {
-    rate: number
-    count: number
-  }
+  category: string
+  gender: string
+  description: string
+  price: number
+  sizes: []
 }
