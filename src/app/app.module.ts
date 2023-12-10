@@ -9,22 +9,37 @@ import {AppRoutingModule} from  "./app.routes";
 import {NavigationComponent} from "./components/navigation/navigation.component";
 import {ProductPageComponent} from "./pages/product-page/product-page.component";
 import {ProductsService} from "./services/products.service";
+import {UserComponent} from "./components/user/user.component";
+import {UserService} from "./services/user.service";
+import {ProfilePageComponent} from "./pages/profile-page/profile-page.component";
+import {ModalComponent} from "./components/modal/modal.component";
+import {UpdateUserComponent} from "./components/update-user/update-user.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
     GlobalErrorComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    UserComponent,
+    ProfilePageComponent,
+    ModalComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     HttpClientModule,
     AppRoutingModule,
-    NavigationComponent
+    NavigationComponent,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [ProductsService],
+  providers: [
+    ProductsService,
+    UserService
+  ],
   exports: [
     ProductComponent
   ],

@@ -1,12 +1,12 @@
 import {RouterModule, Routes} from '@angular/router';
 import {ProductComponent} from "./components/product/product.component";
 import {ProductPageComponent} from "./pages/product-page/product-page.component";
-import {AboutPageComponent} from "./pages/about-page/about-page.component";
 import {NgModule} from "@angular/core";
+import {ProfilePageComponent} from "./pages/profile-page/profile-page.component";
 
 export const routes: Routes = [
   { path: '', component: ProductPageComponent},
-  { path: 'about', component: AboutPageComponent}
+  { path: 'profile', component: ProfilePageComponent}
 ];
 
 @NgModule({
