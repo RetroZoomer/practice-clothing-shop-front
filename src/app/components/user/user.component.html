@@ -1,15 +1,14 @@
-<div class="py-4 px-6 mx-auto w-[400px] border rounded flex items-center flex-col" xmlns="http://www.w3.org/1999/html">
+<div class="py-4 px-6 mx-auto w-[400px] border rounded flex items-center flex-col">
   <h2 class="font-bold">User info:</h2>
   <span class="flex mb-2 items-start flex-col">
     <p>Login: {{ user.username }}</p>
-    <p>Password: {{ user.password }}</p>
+    <p>Password: *****</p>
   </span>
 
   <button
   class="border py-2 px-4 rounded bg-yellow-400"
   (click)="modalService.open()"
   >
-
     Change
   </button>
 </div>

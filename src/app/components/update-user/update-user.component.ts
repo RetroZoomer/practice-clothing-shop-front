@@ -11,40 +11,29 @@ import {ModalService} from "../../services/modal.service";
   styleUrl: './update-user.component.css'
 })
 export class UpdateUserComponent implements OnInit{
-  form = new FormGroup( {
-    username: new FormControl<string>('', [
-      Validators.required,
-      Validators.minLength(3)
-    ]),
-    password: new FormControl<string>('', [
-      Validators.required,
-      Validators.minLength(6)
-    ])
-  })
+  form: any = {};
+  isSuccessful = false;
+  isFailed = false;
+  errorMessage = '';
 
-  get username() {
-    return this.form.controls.username as FormControl
-  }
-
-  get password() {
-    return this.form.controls.password as FormControl
-  }
-
-  constructor(private userService: UserService,
-              private modalService: ModalService) {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
   }
 
-  submit() {
-    console.log(this.form.value)
-    this.userService.updateUser({
-      username: this.form.value.username as string,
-      password: this.form.value.password as string
-    }).subscribe(() => {
-      this.modalService.close()
-    })
+  onSubmit(): void {
+    this.userService.updateUser(this.form).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isFailed = true;
+      }
+      );
   }
 
 }

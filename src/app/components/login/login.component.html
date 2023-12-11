@@ -1,0 +1,75 @@
+<div class="py-4 px-6 mx-auto w-[400px] border rounded flex items-center flex-col">
+  <h1 class="my-2 mx-auto">{{ "Log in form" | titlecase }}</h1>
+  <form
+    *ngIf="!isLoggedIn"
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate
+  >
+    <label>Username</label>
+    <input
+      type="text"
+      class="border w-full py-2 px-4 mb-2"
+      placeholder="Username..."
+      name="username"
+      [(ngModel)]="form.username"
+      required
+      #username="ngModel"
+    >
+
+    <div
+      class="text-red-500"
+      role="alert"
+      *ngIf="f.submitted && username.invalid"
+    >
+      Username is required!
+    </div>
+
+    <label>Password</label>
+    <input
+      type="text"
+      class="border w-full py-2 px-4 mb-2"
+      placeholder="Password..."
+      name="password"
+      [(ngModel)]="form.password"
+      required
+      minlength="6"
+      #password="ngModel"
+    >
+
+    <div
+      class="text-red-500 mb-2"
+      role="alert"
+      *ngIf="f.submitted && password.invalid"
+    >
+      Password is required!
+    </div>
+
+    <span class="flex justify-between items-center">
+      <button
+        type="submit"
+        class="py-2 px-4 bg-blue-500 text-white"
+      >
+      Log in
+    </button>
+
+      <a routerLink="/signup" class="underline">Registration</a>
+    </span>
+
+    <div
+      class="text-red-500"
+      role="alert"
+      *ngIf="f.submitted && isLoginFailed"
+    >
+      Login failed: <br />{{ errorMessage }}
+    </div>
+
+  </form>
+
+  <div class="text-green-400" *ngIf="isLoggedIn">
+    Logged in as {{ roles }}.
+  </div>
+
+</div>
+

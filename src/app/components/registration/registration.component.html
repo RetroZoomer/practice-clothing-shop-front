@@ -1,0 +1,74 @@
+<div class="py-4 px-6 mx-auto w-[400px] border rounded flex items-center flex-col">
+  <h1 class="my-2 mx-auto">{{ "Registration form" | titlecase }}</h1>
+  <form
+    *ngIf="!isSuccessful"
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate
+  >
+    <label>Username</label>
+    <input
+      type="text"
+      class="border w-full py-2 px-4 mb-2"
+      placeholder="Username..."
+      [(ngModel)]="form.username"
+      name="username"
+      required
+      minlength="3"
+      maxlength="20"
+      #username="ngModel"
+    >
+
+    <div
+      class="text-red-500"
+      role="alert"
+      *ngIf="f.submitted && username.invalid"
+    >
+      Username is required!
+    </div>
+
+    <label>Password</label>
+    <input
+      type="text"
+      class="border w-full py-2 px-4 mb-2"
+      placeholder="Password..."
+      name="password"
+      [(ngModel)]="form.password"
+      required
+      minlength="6"
+      #password="ngModel"
+    >
+
+    <div
+      class="text-red-500 mb-2"
+      role="alert"
+      *ngIf="f.submitted && password.invalid"
+    >
+      Password is required!
+    </div>
+
+    <button
+      type="submit"
+      class="py-2 px-4 bg-blue-500 text-white"
+    >
+      Registration
+    </button>
+
+    <div
+      class="text-red-500"
+      *ngIf="f.submitted && isSignUpFailed"
+    >
+      Signup failed!<br />{{ errorMessage }}
+    </div>
+
+  </form>
+
+  <div
+    class="text-green-400"
+    *ngIf="isSuccessful"
+  >
+    Your registration is successful!
+  </div>
+
+</div>

@@ -1,7 +1,17 @@
 <nav class="absolute top-0 right-0 left-0 px-5 h-[50px] flex justify-between items-center text-white bg-gray-500">
   <h1 class="font-bold">Angular App</h1>
-  <span>
-    <a routerLink="/" class="mr-2">Products</a>
-    <a routerLink="/profile">Profile</a>
+
+  <span
+    *ngIf="isLoggedIn"
+  >
+    <a routerLink="/product" class="mr-4">Products</a>
+    <a routerLink="/profile" class="mr-4">Profile</a>
+    <a href="#" (click)="logout()">LogOut</a>
   </span>
+
+  <span *ngIf="!isLoggedIn">
+    <a class="mr-4" routerLink="/signup">Sign Up</a>
+    <a class="mr-2" routerLink="/signin">Login</a>
+  </span>
+
 </nav>

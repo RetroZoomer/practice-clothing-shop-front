@@ -15,6 +15,12 @@ import {ProfilePageComponent} from "./pages/profile-page/profile-page.component"
 import {ModalComponent} from "./components/modal/modal.component";
 import {UpdateUserComponent} from "./components/update-user/update-user.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {LoginPageComponent} from "./pages/login-page/login-page.component";
+import {LoginComponent} from "./components/login/login.component";
+import {RegistrationPageComponent} from "./pages/registration-page/registration-page.component";
+import {RegistrationComponent} from "./components/registration/registration.component";
+import {AddProductComponent} from "./components/add-product/add-product.component";
+import {authInterceptorProviders} from "./auth/_helpers/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -25,7 +31,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     UserComponent,
     ProfilePageComponent,
     ModalComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    LoginPageComponent,
+    LoginComponent,
+    RegistrationPageComponent,
+    RegistrationComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +49,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   ],
   providers: [
     ProductsService,
-    UserService
+    UserService,
+    authInterceptorProviders
   ],
   exports: [
     ProductComponent

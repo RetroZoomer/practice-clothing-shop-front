@@ -1,31 +1,30 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <input
-    type="text"
-    class="border w-full py-2 px-4 mb-2"
-    placeholder="Username..."
-    formControlName="username"
-  >
+<form
+  *ngIf="!isSuccessful"
+  name="form"
+  (ngSubmit)="f.form.valid && onSubmit()"
+  #f="ngForm"
+  novalidate
+>
 
-  <p
-    class="text-red-500 font-medium mb-2"
-    *ngIf="username.errors?.minLength"
-  >
-    Min length must be at least 3.
-  </p>
-
+  <label>Password</label>
   <input
     type="text"
     class="border w-full py-2 px-4 mb-2"
     placeholder="Password..."
-    formControlName="password"
+    [(ngModel)]="form.password"
+    name="password"
+    required
+    minlength="6"
+    #password="ngModel"
   >
 
-  <p
-    class="text-red-500 font-medium mb-2"
-    *ngIf="password.errors?.minLength && password.touched"
+  <div
+    class="text-red-500 mb-2"
+    role="alert"
+    *ngIf="f.submitted && password.invalid"
   >
-    Min length must be at least 6.
-  </p>
+    Password is required!
+  </div>
 
   <button
     type="submit"
@@ -33,4 +32,19 @@
   >
     Submit
   </button>
+
+  <div
+    class="text-red-500"
+    *ngIf="f.submitted && isFailed"
+  >
+    Changing failed!<br />{{ errorMessage }}
+  </div>
+
 </form>
+
+<div
+  class="text-green-400"
+  *ngIf="isSuccessful"
+>
+  Your password is successfully changed!
+</div>

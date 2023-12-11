@@ -5,6 +5,7 @@ import {ErrorService} from "../../services/error.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {throwError} from "rxjs";
 import {ModalService} from "../../services/modal.service";
+import {TokenStorageService} from "../../auth/_services/token-storage.service";
 
 @Component({
   selector: 'app-profile-page',
@@ -12,32 +13,16 @@ import {ModalService} from "../../services/modal.service";
   styleUrl: './profile-page.component.css'
 })
 export class ProfilePageComponent implements OnInit{
-  user: IUser;
+  currentUser: any;
 
   constructor(
     private userService: UserService,
-    private errorService: ErrorService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    private token: TokenStorageService
   ) {
   }
 
-  private errorHandler(error: HttpErrorResponse) {
-    this.errorService.handle(error.message)
-    return throwError(() => error.message)
-  }
-
   ngOnInit() {
-    this.getUser();
+    this.currentUser = this.token.getUser();
   }
-
-  public getUser(): void {
-    this.userService.getUser(1).subscribe(user => {
-        this.user = user;
-      },
-      (error: HttpErrorResponse) => {
-        this.errorHandler.bind(this)
-      })
-  }
-
-
 }
