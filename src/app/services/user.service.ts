@@ -21,11 +21,7 @@ export class UserService {
               private token: TokenStorageService) { }
 
   public getUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(API + 'all', {
-      params: new HttpParams({
-        fromObject: {limit: 5}
-      })
-    })
+    return this.http.get<IUser[]>(API + 'all')
   }
 
   public getUser(userId: number): Observable<IUser> {
@@ -39,7 +35,7 @@ export class UserService {
   public updateUser(user: IUser): Observable<IUser> {
     this.currentUser = this.token.getUser();
     this.currentUser.password = user.password;
-    return this.http.put<IUser>(API + 'update', this.currentUser, httpOptions)
+    return this.http.put<IUser>(API + 'update', this.currentUser)
   }
 
   public deleteUser(userId: number): Observable<void> {

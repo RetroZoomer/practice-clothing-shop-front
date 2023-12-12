@@ -15,7 +15,18 @@
     class="mt-4 flex justify-end"
     *ngIf="findRole()"
   >
-    <button class="border py-1 px-2 mr-1 rounded bg-blue-400 text-white">&#9998;</button>
-    <button class="border py-1 px-2 rounded bg-red-400 text-white">&times;</button>
+    <button
+      class="border py-1 px-2 mr-1 rounded bg-blue-400 text-white"
+      (click)="modalService.open(product.id, 'update')"
+    >
+      &#9998;
+    </button>
+
+    <button
+      class="border py-1 px-2 rounded bg-red-400 text-white"
+      (click)="modalService.open(product.id,'delete')"
+    >
+      &times;
+    </button>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IProduct} from "../../models/product";
 import {ProductsService} from "../../services/products.service";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -13,10 +13,12 @@ import {TokenStorageService} from "../../auth/_services/token-storage.service";
   styleUrl: './product-page.component.css'
 })
 export class ProductPageComponent implements OnInit{
-  products: IProduct[] = []
+  products: IProduct[] = [];
+  product: IProduct;
   line: string = '';
   type: string = '';
   currentUser: any;
+  @Input() productId: number;
 
   constructor(
     private productsService: ProductsService,
@@ -34,7 +36,6 @@ export class ProductPageComponent implements OnInit{
   ngOnInit() {
     this.getProducts();
     this.currentUser = this.token.getUser()
-    console.log(this.currentUser.roles.find(r => r == 'ROLE_ADMIN'))
   }
 
   public getProducts(): void {
@@ -46,6 +47,8 @@ export class ProductPageComponent implements OnInit{
       })
   }
 
-
+  findRole(): boolean {
+    return  this.currentUser.roles.find(r => r == 'ROLE_ADMIN')
+  }
 
 }

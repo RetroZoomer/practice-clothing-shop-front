@@ -1,6 +1,5 @@
 <div class="max-w-2xl container mx-auto pt-5">
 
-
   <input
     type="text"
     class="mb-2 border py-2 px-4 w-full"
@@ -8,16 +7,28 @@
     [(ngModel)]="line"
   >
 
-  <select
-    name="type"
-    class="border mb-4"
-    [(ngModel)]="type"
-  >
-    <option value="">Filter products by category...</option>
-    <option value="Одежда">Одежда</option>
-    <option value="Обувь">Обувь</option>
-    <option value="Аксессуары">Аксессуары</option>
-  </select>
+  <div class="flex justify-between">
+    <select
+      name="type"
+      class="border mb-4"
+      [(ngModel)]="type"
+    >
+      <option value="">Filter products by category...</option>
+      <option value="Одежда">Одежда</option>
+      <option value="Обувь">Обувь</option>
+      <option value="Аксессуары">Аксессуары</option>
+    </select>
+
+    <button
+      class="border py-2 px-4 rounded bg-orange-400"
+      *ngIf="findRole()"
+      (click)="modalService.open(0,'add')"
+      type="button"
+      data-target="addModal"
+    >
+      Add Product
+    </button>
+  </div>
 
   <app-product
     *ngFor="let product of products | filterProductsByName: line | filterProductsByCategory: type; let i = index"
@@ -25,12 +36,41 @@
     [currentUser]="currentUser"
   ></app-product>
 
-  <app-modal
-    *ngIf="modalService.isVisible$ | async"
-    title="Changing product"
+  <div
+    *ngIf="modalService.isAddProduct"
   >
-    <app-update-product></app-update-product>
-  </app-modal>
+    <app-modal
+      *ngIf="modalService.isVisible$ | async"
+      title="Add new product"
+    >
+      <app-add-product></app-add-product>
+    </app-modal>
+  </div>
+
+
+  <div
+    *ngIf="modalService.isUpdateProduct"
+  >
+    <app-modal
+      *ngIf="modalService.isVisible$ | async"
+      title="Edit product"
+    >
+      <app-update-product></app-update-product>
+    </app-modal>
+  </div>
+
+
+  <div
+    *ngIf="modalService.isDeleteProduct"
+  >
+    <app-modal
+      *ngIf="modalService.isVisible$ | async"
+      title="Delete product"
+    >
+      <app-delete-product></app-delete-product>
+    </app-modal>
+  </div>
+
 
 </div>
 

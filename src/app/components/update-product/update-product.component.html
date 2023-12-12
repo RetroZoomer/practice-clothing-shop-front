@@ -1,1 +1,257 @@
-<p>update-product works!</p>
+<div class="py-4 px-6 mx-auto w-[400px] flex items-center flex-col">
+  <form
+    *ngIf="!isSuccessful"
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate
+  >
+    <label>Name</label>
+    <input
+      type="text"
+      class="border w-full py-2 px-4 mb-2"
+      placeholder="name..."
+      name="name"
+      [(ngModel)]="form.name"
+      required
+      #name="ngModel"
+    >
+
+    <div
+      class="text-red-500"
+      role="alert"
+      *ngIf="f.submitted && name.invalid"
+    >
+      Name is required!
+    </div>
+
+    <label>Image URL</label>
+    <input
+      type="text"
+      class="border w-full py-2 px-4 mb-2"
+      placeholder="image url..."
+      name="image"
+      [(ngModel)]="form.image"
+      required
+      #image="ngModel"
+    >
+
+    <div
+      class="text-red-500 mb-2"
+      role="alert"
+      *ngIf="f.submitted && image.invalid"
+    >
+      Image url is required!
+    </div>
+
+    <div>
+      <label>Category</label>
+      <p>
+        <select
+          name="category" class="border mb-4"
+          required
+          minlength="1"
+          [(ngModel)]="form.category"
+          #category="ngModel"
+        >
+          <option value="">Choose a category...</option>
+          <option
+            value="Одежда"
+
+          >
+            Одежда
+          </option>
+
+          <option
+            value="Обувь"
+
+          >
+            Обувь
+          </option>
+
+          <option
+            value="Аксессуары"
+
+          >
+            Аксессуары
+          </option>
+        </select>
+    </div>
+
+    <div
+      class="text-red-500 mb-2"
+      role="alert"
+      *ngIf="f.submitted && category.invalid"
+    >
+      Category is required!
+    </div>
+
+    <label>Description</label>
+    <input
+      type="text"
+      class="border w-full py-2 px-4 mb-2"
+      placeholder="description..."
+      name="description"
+      [(ngModel)]="form.description"
+      required
+      maxlength="250"
+      #description="ngModel"
+    >
+
+    <div
+      class="text-red-500 mb-2"
+      role="alert"
+      *ngIf="f.submitted && description.invalid"
+    >
+      Description is required!
+    </div>
+
+    <label>Price</label>
+    <input
+      type="number"
+      class="border w-full py-2 px-4 mb-2"
+      placeholder="price..."
+      name="price"
+      min="1"
+      max="1000000"
+      [(ngModel)]="form.price"
+      required
+      #price="ngModel"
+    >
+
+    <div
+      class="text-red-500 mb-2"
+      role="alert"
+      *ngIf="f.submitted && price.invalid"
+    >
+      Price is required!
+    </div>
+
+<!--    <label>Sizes</label>-->
+<!--    <fieldset class="border rounded px-2 py-4 mb-4">-->
+<!--      <legend>Choose sizes:</legend>-->
+
+<!--      <div class="flex flex-row justify-between mb-1">-->
+<!--        <div>-->
+<!--          <input type="checkbox" name="XXS" class="mr-1"/>-->
+<!--          <label>XXS</label>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <label>Count:</label>-->
+<!--          <input type="number" name="count" min="1" max="100000" class="border ml-1"/>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="flex flex-row justify-between mb-1">-->
+<!--        <div>-->
+<!--          <input type="checkbox" name="XS" class="mr-1"/>-->
+<!--          <label>XS</label>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <label>Count:</label>-->
+<!--          <input type="number" name="count" min="1" max="100000" class="border ml-1"/>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="flex flex-row justify-between mb-1">-->
+<!--        <div>-->
+<!--          <input type="checkbox" name="S" class="mr-1"/>-->
+<!--          <label>S</label>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <label>Count:</label>-->
+<!--          <input type="number" name="count" min="1" max="100000" class="border ml-1"/>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="flex flex-row justify-between mb-1">-->
+<!--        <div>-->
+<!--          <input type="checkbox" name="M" class="mr-1"/>-->
+<!--          <label>M</label>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <label>Count:</label>-->
+<!--          <input type="number" name="count" min="1" max="100000" class="border ml-1"/>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="flex flex-row justify-between mb-1">-->
+<!--        <div>-->
+<!--          <input type="checkbox" name="L" class="mr-1"/>-->
+<!--          <label>L</label>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <label>Count:</label>-->
+<!--          <input type="number" name="count" min="1" max="100000" class="border ml-1"/>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="flex flex-row justify-between mb-1">-->
+<!--        <div>-->
+<!--          <input type="checkbox" name="XL" class="mr-1"/>-->
+<!--          <label>XL</label>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <label>Count:</label>-->
+<!--          <input type="number" name="count" min="1" max="100000" class="border ml-1"/>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="flex flex-row justify-between mb-1">-->
+<!--        <div>-->
+<!--          <input type="checkbox" name="XXL" class="mr-1"/>-->
+<!--          <label>XXL</label>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <label>Count:</label>-->
+<!--          <input type="number" name="count" min="1" max="100000" class="border ml-1"/>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="flex flex-row justify-between mb-1">-->
+<!--        <div>-->
+<!--          <input type="checkbox" name="XXXL" class="mr-1"/>-->
+<!--          <label>XXXL</label>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <label>Count:</label>-->
+<!--          <input type="number" name="count" min="1" max="100000" class="border ml-1"/>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </fieldset>-->
+
+    <!--    <div-->
+    <!--      class="text-red-500 mb-2 mt-4"-->
+    <!--      role="alert"-->
+    <!--      *ngIf="f.submitted"-->
+    <!--    >-->
+    <!--      Sizes is required!-->
+    <!--    </div>-->
+
+    <span class="flex justify-between items-center">
+      <button
+        type="submit"
+        class="py-2 px-4 bg-blue-500 text-white"
+      >
+        Edit product
+      </button>
+    </span>
+
+    <div
+      class="text-red-500"
+      role="alert"
+      *ngIf="f.submitted && isFailed"
+    >
+      Edit product failed: <br />{{ errorMessage }}
+    </div>
+
+  </form>
+</div>

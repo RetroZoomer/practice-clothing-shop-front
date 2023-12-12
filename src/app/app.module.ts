@@ -26,6 +26,7 @@ import {AboutProductComponent} from "./components/about-product/about-product.co
 import {FilterProductsByNamePipe} from "./pipes/filter-products-by-name.pipe";
 import {FilterProductsByCategoryPipe} from "./pipes/filter-products-by-category.pipe";
 import {UpdateProductComponent} from "./components/update-product/update-product.component";
+import {DeleteProductComponent} from "./components/delete-product/delete-product.component";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {UpdateProductComponent} from "./components/update-product/update-product
     AddProductComponent,
     AboutProductPageComponent,
     AboutProductComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    DeleteProductComponent
   ],
   imports: [
     BrowserModule,

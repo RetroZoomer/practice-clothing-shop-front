@@ -5,6 +5,7 @@ import {ProfilePageComponent} from "./pages/profile-page/profile-page.component"
 import {LoginPageComponent} from "./pages/login-page/login-page.component";
 import {RegistrationPageComponent} from "./pages/registration-page/registration-page.component";
 import {AboutProductPageComponent} from "./pages/about-product-page/about-product-page.component";
+import {UpdateProductComponent} from "./components/update-product/update-product.component";
 
 export const routes: Routes = [
   { path: 'product', component: ProductPageComponent},

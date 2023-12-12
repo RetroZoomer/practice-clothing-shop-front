@@ -2,6 +2,9 @@
   [user] = currentUser
 ></app-user>
 
-<app-modal *ngIf="modalService.isVisible$ | async" title="Changing user data">
+<app-modal
+  *ngIf="modalService.isVisible$ | async"
+  title="Changing user data"
+>
   <app-update-user></app-update-user>
 </app-modal>
