@@ -1,20 +1,21 @@
-<div class="py-4 px-6 border rounded flex items-center flex-col mb-2">
-  <img [src]="product.image" [alt]="product.name" class="w-1/6 mb-2">
+<div class="py-4 px-6 border rounded flex items-center flex-col w-1/2 mb-2 mx-auto">
+  <img [src]="product.image" [alt]="product.name" class="w-1/2 mb-2">
   <h2 class="mb-2 text-md text-center">{{ product.name }}</h2>
   <p>Price: <span class="font-bold">{{ product.price | currency:'USD ' }}</span></p>
 
   <button
-    class="border py-2 px-4 rounded"
-    [ngClass]="{
-      'bg-yellow-400': !details,
-      'bg-blue-400': details
-    }"
-    (click)="details = !details"
+    class="border py-2 px-4 rounded bg-yellow-400"
+
+    [routerLink]="['/aboutProduct', product.id]"
   >
-    {{ details ? 'Hide' : 'Show' }} Description
+    Show more
   </button>
 
-  <div *ngIf="details">
-    <p>{{ product.description }}</p>
+  <div
+    class="mt-4 flex justify-end"
+    *ngIf="findRole()"
+  >
+    <button class="border py-1 px-2 mr-1 rounded bg-blue-400 text-white">&#9998;</button>
+    <button class="border py-1 px-2 rounded bg-red-400 text-white">&times;</button>
   </div>
 </div>

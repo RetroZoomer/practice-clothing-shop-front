@@ -7,6 +7,9 @@ import {IProduct} from "../../models/product";
 })
 export class ProductComponent {
   @Input() product: IProduct
+  @Input() currentUser: any
 
-  details: boolean = false
+  findRole(): boolean {
+     return  this.currentUser.roles.find(r => r == 'ROLE_ADMIN')
+  }
 }

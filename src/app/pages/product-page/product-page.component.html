@@ -1,4 +1,37 @@
-<app-product
-  *ngFor="let product of products; let i = index"
-  [product]=product
-></app-product>
+<div class="max-w-2xl container mx-auto pt-5">
+
+
+  <input
+    type="text"
+    class="mb-2 border py-2 px-4 w-full"
+    placeholder="Filter products by name..."
+    [(ngModel)]="line"
+  >
+
+  <select
+    name="type"
+    class="border mb-4"
+    [(ngModel)]="type"
+  >
+    <option value="">Filter products by category...</option>
+    <option value="Одежда">Одежда</option>
+    <option value="Обувь">Обувь</option>
+    <option value="Аксессуары">Аксессуары</option>
+  </select>
+
+  <app-product
+    *ngFor="let product of products | filterProductsByName: line | filterProductsByCategory: type; let i = index"
+    [product]=product
+    [currentUser]="currentUser"
+  ></app-product>
+
+  <app-modal
+    *ngIf="modalService.isVisible$ | async"
+    title="Changing product"
+  >
+    <app-update-product></app-update-product>
+  </app-modal>
+
+</div>
+
+

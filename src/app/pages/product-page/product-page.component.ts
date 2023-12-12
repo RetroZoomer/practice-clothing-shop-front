@@ -4,6 +4,8 @@ import {ProductsService} from "../../services/products.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ErrorService} from "../../services/error.service";
 import {throwError} from "rxjs";
+import {ModalService} from "../../services/modal.service";
+import {TokenStorageService} from "../../auth/_services/token-storage.service";
 
 @Component({
   selector: 'app-product-page',
@@ -12,10 +14,15 @@ import {throwError} from "rxjs";
 })
 export class ProductPageComponent implements OnInit{
   products: IProduct[] = []
+  line: string = '';
+  type: string = '';
+  currentUser: any;
 
   constructor(
     private productsService: ProductsService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    public modalService: ModalService,
+    private token: TokenStorageService
   ) {
   }
 
@@ -26,6 +33,8 @@ export class ProductPageComponent implements OnInit{
 
   ngOnInit() {
     this.getProducts();
+    this.currentUser = this.token.getUser()
+    console.log(this.currentUser.roles.find(r => r == 'ROLE_ADMIN'))
   }
 
   public getProducts(): void {

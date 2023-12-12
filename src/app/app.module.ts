@@ -21,6 +21,11 @@ import {RegistrationPageComponent} from "./pages/registration-page/registration-
 import {RegistrationComponent} from "./components/registration/registration.component";
 import {AddProductComponent} from "./components/add-product/add-product.component";
 import {authInterceptorProviders} from "./auth/_helpers/auth.interceptor";
+import {AboutProductPageComponent} from "./pages/about-product-page/about-product-page.component";
+import {AboutProductComponent} from "./components/about-product/about-product.component";
+import {FilterProductsByNamePipe} from "./pipes/filter-products-by-name.pipe";
+import {FilterProductsByCategoryPipe} from "./pipes/filter-products-by-category.pipe";
+import {UpdateProductComponent} from "./components/update-product/update-product.component";
 
 @NgModule({
   declarations: [
@@ -36,7 +41,10 @@ import {authInterceptorProviders} from "./auth/_helpers/auth.interceptor";
     LoginComponent,
     RegistrationPageComponent,
     RegistrationComponent,
-    AddProductComponent
+    AddProductComponent,
+    AboutProductPageComponent,
+    AboutProductComponent,
+    UpdateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +53,9 @@ import {authInterceptorProviders} from "./auth/_helpers/auth.interceptor";
     AppRoutingModule,
     NavigationComponent,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FilterProductsByNamePipe,
+    FilterProductsByCategoryPipe
   ],
   providers: [
     ProductsService,
