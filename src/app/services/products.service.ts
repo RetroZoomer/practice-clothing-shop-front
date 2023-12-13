@@ -24,6 +24,9 @@ export class ProductsService {
     return this.http.get<IProduct>(`${this.apiServerUrl}/product/find/${productId}`)
   }
 
+  public getRandom(): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(`${this.apiServerUrl}/product/random`)}
+
   public addProduct(product: IProduct): Observable<IProduct> {
     return this.http.post<IProduct>(`${this.apiServerUrl}/product/add`, product)
   }

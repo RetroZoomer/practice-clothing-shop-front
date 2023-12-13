@@ -1,4 +1,12 @@
 <div class="max-w-2xl container mx-auto pt-5">
+  <div class="flex flex-row align-baseline border rounded py-2 px-4 mb-4 w-full">
+    <app-random-products
+      *ngFor="let product of threeProducts; let i = index"
+      [product]=product
+      [currentUser]="currentUser"
+    ></app-random-products>
+  </div>
+
 
   <input
     type="text"
@@ -10,7 +18,7 @@
   <div class="flex justify-between">
     <select
       name="type"
-      class="border mb-4"
+      class="border mb-4 py-2 px-4"
       [(ngModel)]="type"
     >
       <option value="">Filter products by category...</option>
@@ -20,7 +28,7 @@
     </select>
 
     <button
-      class="border py-2 px-4 rounded bg-orange-400"
+      class="border py-2 px-4 h-min rounded bg-orange-400"
       *ngIf="findRole()"
       (click)="modalService.open(0,'add')"
       type="button"

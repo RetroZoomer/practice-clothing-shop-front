@@ -14,6 +14,7 @@ import {TokenStorageService} from "../../auth/_services/token-storage.service";
 })
 export class ProductPageComponent implements OnInit{
   products: IProduct[] = [];
+  threeProducts: IProduct[] =[]
   product: IProduct;
   line: string = '';
   type: string = '';
@@ -35,6 +36,7 @@ export class ProductPageComponent implements OnInit{
 
   ngOnInit() {
     this.getProducts();
+    this.getRandomProducts();
     this.currentUser = this.token.getUser()
   }
 
@@ -42,6 +44,16 @@ export class ProductPageComponent implements OnInit{
     this.productsService.getProducts().subscribe(products => {
       this.products = products;
     },
+      (error: HttpErrorResponse) => {
+        this.errorHandler.bind(this)
+      })
+  }
+
+  public getRandomProducts(): void {
+    this.productsService.getRandom().subscribe(products => {
+        this.threeProducts = products;
+        console.log(this.threeProducts)
+      },
       (error: HttpErrorResponse) => {
         this.errorHandler.bind(this)
       })
